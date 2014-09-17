@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A72529FC19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A72529FB19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.m */; };
 		A758C01819AE88E30026C453 /* Earth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A758C00E19AE88E30026C453 /* Earth.jpg */; };
 		A758C01919AE88E30026C453 /* EinsteinRing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A758C00F19AE88E30026C453 /* EinsteinRing.jpg */; };
 		A758C01A19AE88E30026C453 /* Jupiter.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A758C01019AE88E30026C453 /* Jupiter.jpg */; };
@@ -19,6 +20,7 @@
 		A758C02119AE88E30026C453 /* Venus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A758C01719AE88E30026C453 /* Venus.jpg */; };
 		A758C02419AE894F0026C453 /* AGEotwSpaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A758C02319AE894F0026C453 /* AGEotwSpaceObject.m */; };
 		A763D65719AB7FEE0087DFB7 /* AstronomicalData.m in Sources */ = {isa = PBXBuildFile; fileRef = A763D65619AB7FEE0087DFB7 /* AstronomicalData.m */; };
+		A76B88ED19C074E1000FFB5D /* AGESpaceDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76B88EC19C074E1000FFB5D /* AGESpaceDataViewController.m */; };
 		A7A4142819A64DBE006E13E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A4142719A64DBE006E13E0 /* Foundation.framework */; };
 		A7A4142A19A64DBE006E13E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A4142919A64DBE006E13E0 /* CoreGraphics.framework */; };
 		A7A4142C19A64DBE006E13E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A4142B19A64DBE006E13E0 /* UIKit.framework */; };
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A72529FA19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEotwAddSpaceObjectViewController.h; sourceTree = "<group>"; };
+		A72529FB19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEotwAddSpaceObjectViewController.m; sourceTree = "<group>"; };
 		A758C00E19AE88E30026C453 /* Earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Earth.jpg; sourceTree = "<group>"; };
 		A758C00F19AE88E30026C453 /* EinsteinRing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EinsteinRing.jpg; sourceTree = "<group>"; };
 		A758C01019AE88E30026C453 /* Jupiter.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jupiter.jpg; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 		A758C02319AE894F0026C453 /* AGEotwSpaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEotwSpaceObject.m; sourceTree = "<group>"; };
 		A763D65519AB7FEE0087DFB7 /* AstronomicalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AstronomicalData.h; sourceTree = "<group>"; };
 		A763D65619AB7FEE0087DFB7 /* AstronomicalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AstronomicalData.m; sourceTree = "<group>"; };
+		A76B88EB19C074E1000FFB5D /* AGESpaceDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGESpaceDataViewController.h; sourceTree = "<group>"; };
+		A76B88EC19C074E1000FFB5D /* AGESpaceDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGESpaceDataViewController.m; sourceTree = "<group>"; };
 		A7A4142419A64DBE006E13E0 /* AGEOutofthisworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGEOutofthisworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A4142719A64DBE006E13E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A7A4142919A64DBE006E13E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,6 +152,10 @@
 				A758C02219AE894F0026C453 /* AGEotwSpaceObject.h */,
 				A758C02319AE894F0026C453 /* AGEotwSpaceObject.m */,
 				A7A4143919A64DBE006E13E0 /* Main.storyboard */,
+				A72529FA19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.h */,
+				A72529FB19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.m */,
+				A76B88EB19C074E1000FFB5D /* AGESpaceDataViewController.h */,
+				A76B88EC19C074E1000FFB5D /* AGESpaceDataViewController.m */,
 				A7B0E6A819B5FBB20081F588 /* AGESpaceImageViewController.h */,
 				A7B0E6A919B5FBB20081F588 /* AGESpaceImageViewController.m */,
 				A7A4145C19A64ED7006E13E0 /* AGEOuterSpaceTableViewController.h */,
@@ -306,11 +316,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7A4143419A64DBE006E13E0 /* main.m in Sources */,
+				A72529FC19C0F02000946C7C /* AGEotwAddSpaceObjectViewController.m in Sources */,
 				A7B0E6AA19B5FBB20081F588 /* AGESpaceImageViewController.m in Sources */,
 				A7A4143819A64DBE006E13E0 /* AGEotwAppDelegate.m in Sources */,
 				A7A4145E19A64ED7006E13E0 /* AGEOuterSpaceTableViewController.m in Sources */,
 				A758C02419AE894F0026C453 /* AGEotwSpaceObject.m in Sources */,
 				A763D65719AB7FEE0087DFB7 /* AstronomicalData.m in Sources */,
+				A76B88ED19C074E1000FFB5D /* AGESpaceDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,9 @@
     self.scrollView.minimumZoomScale=0.5;
     
     // Do any additional setup after loading the view.
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AGEotwAddSpaceObjectViewController.h"
 
-@interface AGEOuterSpaceTableViewController : UITableViewController
+@interface AGEOuterSpaceTableViewController : UITableViewController <AGEotwAddSpaceObjectViewControllerDelegate> // conform to protocol
+
 @property(strong,nonatomic) NSMutableArray *planets;
+@property(strong,nonatomic) NSMutableArray *addedSpaceObjects;
+
+
+
 
 
 @end

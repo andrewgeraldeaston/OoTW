@@ -10,9 +10,7 @@
 #import "AstronomicalData.h"
 #import "AGEotwSpaceObject.h"
 #import "AGESpaceImageViewController.h"
-
-
-
+#import "AGESpaceDataViewController.h"
 
 @interface AGEOuterSpaceTableViewController ()
 
@@ -20,38 +18,59 @@
 
 @implementation AGEOuterSpaceTableViewController
 
+// ******************************************************
+
+#pragma mark - Lazy Instantiation of Properties
+
+-(NSMutableArray *)planets
+{
+    if (!_planets) {
+        
+        _planets = [[ NSMutableArray alloc] init];
+        
+    }
+    
+    return _planets;
+    
+    
+}
+
+
+-(NSMutableArray *)addedSpaceObjects
+{
+    if (!_addedSpaceObjects){
+        
+        _addedSpaceObjects = [[NSMutableArray alloc] init];
+        
+    }
+    
+    return _addedSpaceObjects;
+    
+} // ***************************************************
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
+    
     if (self) {
+        
         // Custom initialization
+        
     }
+    
     return self;
+    
 }
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-   // NSString *planet1 = @"Mercury";
-   // NSString *planet2 = @"Venus";
-   // NSString *planet3 = @"Earth";
-   // NSString *planet4 = @"Mars";
-   // NSString *planet5 = @"Jupiter";
-   // NSString *planet6 = @"Saturn";
-   // NSString *planet7 = @"Uranus";
-   // NSString *planet8 = @"Neptune";
-    
-       // self.planets = [[NSMutableArray alloc] initWithObjects:planet1,planet2,planet3, planet4, planet5, planet6, planet7, planet8, nil];
-    
-    self.planets = [[NSMutableArray alloc] init];
+
+  
+    // self.planets = [[NSMutableArray alloc] init];
     
     for (NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets])
     {
@@ -59,35 +78,10 @@
         AGEotwSpaceObject *planet = [[AGEotwSpaceObject alloc] initWithData:planetData andImage:[UIImage imageNamed:imageName]];
         [self.planets addObject:planet];
         
-        
     }
  
-//    [self.planets addObject:planet1];
-//    [self.planets addObject:planet2];
-//    [self.planets addObject:planet3];
-//    [self.planets addObject:planet4];
-//    [self.planets addObject:planet5];
-//    [self.planets addObject:planet6];
-//    [self.planets addObject:planet7];
-//[self.planets addObject:planet8];
-
-    
-//    NSMutableDictionary *myDictionary = [[NSMutableDictionary alloc] init];
-//    NSString *firstColor = @"red";
-//    [myDictionary setObject:firstColor forKey:@"firetruck color"];
-//    [myDictionary setObject:"@"blue" forKey"@"ocean color"];
-//    [myDictionary setObject:@"yellow" forKey:@"star color"];
-//     NSLog(@"%@", myDictionary);
-//     NSString *blueString =[myDictionary objectForKey:@"ocean color"];
-//     NSLog(@"%@", blueString);
-
-    
-    // NSNumber *myNumber = [NSNumber numberWithInt:5]; // passing in an
-    // NSLog(@"%@", myNumber); // wrapping pirimitives in an object why - add numbers/pirmietives to an array and dictionaries only accept objects so in order to add an pirimitive to a dictionary/array first wrap it in a number
-    // NSNumber *floatNumber = [NSNumber numberWithFloat:3.14];
-    // NSLog(@"%@", floatNumber);
-    
 }
+
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender   // (what class an object is , powerful design pattern when you are going to transition to a new view as well as add code dynamically when you do that transition)
@@ -109,13 +103,58 @@
             
             NSIndexPath *path = [self.tableView indexPathForCell:sender]; // where am i on my tableView  (give me back the indexpath for the indexpath for my cell ( i know because im passing this as an argument - not in my headerfile (tableview not as a property) because its a UItableviewcontroller aumtoatically get access to the controller e.g. self.tableview
             
-            AGEotwSpaceObject *selectedObject = self.planets[path.row]; // use the NSIndexPath in order to index into the array of objects. (check the literal syntax)
+            AGEotwSpaceObject *selectedObject;
+            
+            if (path.section ==0) {
+                
+                selectedObject = self.planets[path.row];
+                
+            } else if (path.section ==1) {
+                
+                selectedObject = self.addedSpaceObjects[path.row];
+                
+            }
+            
+           // = self.planets[path.row]; // use the NSIndexPath in order to index into the array of objects. (check the literal syntax)
+            
             
             nextViewController.spaceObject = selectedObject; // set my next viewcontrollers property / right before i transition to my new viewcontroller and prepare for segue method. // IBOUTLET and UI ElEMENTS are not available to us in segue method. Only available to the viewcontroller after that viewcontroller is presented on the screen. We use a proxy property to hold onto the value and then in the VIEWDIDLOAD METHOD we can update the UI elements properly. Dont set UI properties inside the PREPAREFORSEGUE method. Create a property pass an object string/image/owspaceobject etc to new viewcongtroler now you have access to that object useing self and the name of that property and you can use it to update the elements inside the VIEWDIDLOAD method.
         }
         
     }
+    
+    
+    if ([sender isKindOfClass:[NSIndexPath class]]) // performed segue with identifier we past sender a
+    {
+        if ([segue.destinationViewController isKindOfClass:[AGESpaceDataViewController class]]) //destination
+        {
+            AGESpaceDataViewController *targetViewController = segue.destinationViewController;
+            NSIndexPath *path = sender;
+            AGEotwSpaceObject *selectedObject;
+            
+            if ( path.section == 0 ) {
+                selectedObject = self.planets[path.row];
+                
+            } else if (path.section == 1) {
+                
+                selectedObject = self.addedSpaceObjects[path.row];
+                
+            }
+    
+            targetViewController.spaceObject = selectedObject;
+            
+        }
+        
+    }
+    if ([segue.destinationViewController isKindOfClass:[AGEotwAddSpaceObjectViewController class]]){
+        AGEotwAddSpaceObjectViewController *addSpaceObjectVC = segue.destinationViewController;
+        addSpaceObjectVC.delegate = self;  // setting the property addspaceobjectVC = setting to this VC so we can access inside the class
+        // is the place i need to assign the image (YET TO FIND OUT)
+        
+    }
 }
+
+
 
 
 - (void)didReceiveMemoryWarning
@@ -124,25 +163,75 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - AGEothSpaceObjectViewController Delegate
+
+-(void)didCancel
+
+{
+    NSLog(@"Did Cancel" );
+    [self dismissViewControllerAnimated:YES completion:nil]; //dismiss the vccontoller(addspaceVC) when its on top of the VC when its ontop
+    
+}
+
+-(void)addSpaceObject:(AGEotwSpaceObject *)spaceObject {
+    if (!self.addedSpaceObjects){
+       // self.addedSpaceObjects = [[NSMutableArray alloc] init];
+        
+    }
+    
+    [self.addedSpaceObjects addObject:spaceObject];
+    
+    NSLog(@"Add Space Object");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    // ***************************  RELOAD DATA ABOVE   *******************************
+    // tableview controller when loaded grabs all the information but doesnt know we have updated the info ( add )
+    
+    [self.tableView reloadData]; //check again and should i update and with what info.
+    
+    // ***************************  RELOAD DATA ABOVE   *******************************
+    
+    
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    
+    if ([self.addedSpaceObjects count])
+        {
+            return 2;
+        }
+        else {
+        
+            return 1;
+        }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     
+    if (section ==1){
+        
+        return [self.addedSpaceObjects count];
+    }
+    else {
+        
+        return [self.planets count];
+    }
+}
+    
    //to make dynamic
 
-    return [self.planets count];
-    
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -150,19 +239,41 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // Configure the cell...
     
+    if (indexPath.section ==1){
+        
+        //use new space object to customize our cell.
+        //passing info back from one controller to another controller
+        
+        AGEotwSpaceObject *planet = [self.addedSpaceObjects objectAtIndex:indexPath.row];
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickname;
+        cell.imageView.image = planet.spaceImage;
+        
+    }
     
-    AGEotwSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
-    cell.textLabel.text = planet.name;
-    cell.detailTextLabel.text = planet.nickname;
-    cell.imageView.image = planet.spaceImage;  // CELLS default propoerty called Image.
+    else {
+        AGEotwSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickname;
+        cell.imageView.image = planet.spaceImage;  // CELLS default propoerty called Image.
+    }
     
     cell.backgroundColor= [UIColor clearColor];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
-    
+
     return cell;
 }
 
+
+#pragma mark UITableView Delegate
+
+
+-(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    //NSLog(@"accessory button is working properly %i", indexPath.row);
+    [self performSegueWithIdentifier:@"Push to space data" sender:indexPath]; //sender passed indexpath and indexpath is of type NSIndexPath(see above 2 lines)
+}
 
 /*
 // Override to support conditional editing of the table view.
